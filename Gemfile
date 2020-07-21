@@ -5,6 +5,7 @@ ruby '2.6.1'
 gem 'active_model_serializers'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'faraday'
+gem 'htmlentities', '~> 4.3', '>= 4.3.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
@@ -18,6 +19,7 @@ gem 'puma', '~> 4.1'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+gem 'jwt', '~> 2.2', '>= 2.2.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -42,3 +44,9 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+# require 'htmlentities'
+# coder = HTMLEntities.new
+# string = "This movie contains the quote, &quot;I feel the need ... the need for speed!&quot;",
+# text = coder.decode(string) 

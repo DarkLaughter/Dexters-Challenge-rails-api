@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+get '/users/stay_logged_in', to: 'users#stay_logged_in'
+post '/login', to: 'users#login'
+ post '/users', to: 'users#create'
+
+
   resources :results
   resources :ratings
   resources :users
