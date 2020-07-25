@@ -1,6 +1,5 @@
 class QuizSerializer < ActiveModel::Serializer
-  attributes :id, :level, :quizratings
-  # , :questions
+  attributes :id, :level, :quizratings, :questions
   belongs_to :category
 
 

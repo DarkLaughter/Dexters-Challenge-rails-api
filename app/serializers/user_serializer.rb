@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes  :id, :name, :username, :email, :numquizzesrated, :avg_qrating, :totalqstaken, :totalAnscorrect, :totalAnsincorrect, :questionPercentage, :totalquestions
+  attributes  :id, :name, :username, :email, :numquizzesrated, :avg_qrating, :totalqstaken, :totalAnscorrect, :totalAnsincorrect, :questionPercentage, :totalquestions, :avgTime
 
   def results
     if object.results == []
@@ -20,7 +20,8 @@ class UserSerializer < ActiveModel::Serializer
 
   
   def numquizzesrated
-    object.ratings.size 
+    arr = object.ratings.map{|rating| rating.score}
+    arr.size
   end
   
   def avg_qrating
@@ -37,7 +38,7 @@ if object.ratings.size == 0
   end
 ###### quiz data for user 
   def totalqstaken
-    object.quizzes.size
+    object.results.size
   end
 ########## results for user
 
@@ -45,7 +46,6 @@ def totalAnscorrect
   if object.results.size == 0
     return 0
   else
-    totalnum = object.results.size
       sumarray = object.results.map{|resultObj| resultObj.num_correct}
       sum = sumarray.reduce(0){|sum, num| sum + num}
       sum
@@ -56,7 +56,6 @@ def totalAnsincorrect
   if object.results.size == 0
     return 0
   else
-    totalnum = object.results.size
       sumarray = object.results.map{|resultObj| resultObj.num_incorrect}
       sum = sumarray.reduce(0){|sum, num| sum + num}
       sum
@@ -79,6 +78,19 @@ end
 def totalquestions
   totalAnscorrect + totalAnsincorrect
 end
+
+def avgTime
+  if object.results.size == 0
+    return 0
+  else
+      total = object.results.size
+      sumarray = object.results.map{|resultObj| resultObj.time.to_i}
+      sum = sumarray.reduce(0){|sum, num| sum + num}
+      avg = sum/total
+      avg.to_f
+  end
+end
+
 
 end
 
