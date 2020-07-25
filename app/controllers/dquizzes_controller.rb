@@ -1,0 +1,2 @@
+class DquizzesController < ApplicationController
+end

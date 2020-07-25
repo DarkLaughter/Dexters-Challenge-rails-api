@@ -1,0 +1,2 @@
+class DratingsController < ApplicationController
+end

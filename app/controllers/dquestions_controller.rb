@@ -1,0 +1,2 @@
+class DquestionsController < ApplicationController
+end

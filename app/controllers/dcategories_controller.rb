@@ -1,0 +1,2 @@
+class DcategoriesController < ApplicationController
+end
