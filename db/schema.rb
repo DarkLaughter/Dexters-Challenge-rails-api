@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_16_142724) do
+ActiveRecord::Schema.define(version: 2020_07_25_164932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,52 @@ ActiveRecord::Schema.define(version: 2020_07_16_142724) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "dcategories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "dquestions", force: :cascade do |t|
+    t.string "q_text"
+    t.string "correct"
+    t.string "incorrect"
+    t.bigint "dquiz_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dquiz_id"], name: "index_dquestions_on_dquiz_id"
+  end
+
+  create_table "dquizzes", force: :cascade do |t|
+    t.integer "level"
+    t.bigint "dcategory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dcategory_id"], name: "index_dquizzes_on_dcategory_id"
+  end
+
+  create_table "dratings", force: :cascade do |t|
+    t.integer "score"
+    t.bigint "user_id", null: false
+    t.bigint "dquiz_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dquiz_id"], name: "index_dratings_on_dquiz_id"
+    t.index ["user_id"], name: "index_dratings_on_user_id"
+  end
+
+  create_table "dresults", force: :cascade do |t|
+    t.integer "time"
+    t.integer "num_incorrect"
+    t.integer "num_correct"
+    t.bigint "user_id", null: false
+    t.bigint "dquiz_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["dquiz_id"], name: "index_dresults_on_dquiz_id"
+    t.index ["user_id"], name: "index_dresults_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -71,6 +117,12 @@ ActiveRecord::Schema.define(version: 2020_07_16_142724) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "dquestions", "dquizzes"
+  add_foreign_key "dquizzes", "dcategories"
+  add_foreign_key "dratings", "dquizzes"
+  add_foreign_key "dratings", "users"
+  add_foreign_key "dresults", "dquizzes"
+  add_foreign_key "dresults", "users"
   add_foreign_key "questions", "quizzes"
   add_foreign_key "quizzes", "categories"
   add_foreign_key "ratings", "quizzes"

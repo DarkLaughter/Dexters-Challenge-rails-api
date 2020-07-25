@@ -12,4 +12,3 @@ class User < ApplicationRecord
     has_many :dratings
     has_many :dquizzes, through: :dratings
 end
-end
