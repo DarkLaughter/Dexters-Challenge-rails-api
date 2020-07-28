@@ -1,3 +1,4 @@
 class DcategorySerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :dquizzes
+  has_many :dquizzes
 end

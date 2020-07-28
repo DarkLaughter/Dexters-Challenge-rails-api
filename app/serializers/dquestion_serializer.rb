@@ -1,4 +1,4 @@
 class DquestionSerializer < ActiveModel::Serializer
   attributes :id, :q_text, :correct, :incorrect
-  has_one :dquiz
+  belongs_to :dquiz
 end

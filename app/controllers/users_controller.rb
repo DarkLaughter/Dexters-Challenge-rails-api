@@ -15,7 +15,7 @@ class UsersController < ApplicationController
           token: wristband
         }
       else
-        render json: {error: "You messed up."}
+        render json: {error: "Incorrect Username/Password"}
       end
     end
 
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
         token: wristband
       }
     end
-
+    
     
     
     def create
