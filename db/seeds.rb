@@ -14,5 +14,6 @@ require 'htmlentities'
 
 
 
-# User.create(name:ENV["name"], username:ENV["un"], password:ENV["pw"])
+User.create(name:ENV["name"], username:ENV["un"], password:ENV["pw"])
+##########
 
