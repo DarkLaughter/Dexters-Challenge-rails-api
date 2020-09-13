@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes  :id, :name, :username, :email, :numquizzesrated, :avg_qrating, :totalqstaken, :totalAnscorrect, :totalAnsincorrect, :questionPercentage, :totalquestions, :avgTime, :dnumquizzesrated, :davg_qrating, :dtotalqstaken, :dtotalAnscorrect, :dtotalAnsincorrect, :dquestionPercentage, :dtotalquestions, :davgTime
+  attributes  :id, :name,:username, :email, :numquizzesrated, :avg_qrating, :totalqstaken, :totalAnscorrect, :totalAnsincorrect, :questionPercentage, :totalquestions, :avgTime, :dnumquizzesrated, :davg_qrating, :dtotalqstaken, :dtotalAnscorrect, :dtotalAnsincorrect, :dquestionPercentage, :dtotalquestions, :davgTime
   def results
     if object.results == []
        return 0
