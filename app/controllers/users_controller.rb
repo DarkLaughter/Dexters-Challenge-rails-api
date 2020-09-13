@@ -55,9 +55,9 @@ class UsersController < ApplicationController
         render json: user
     end
     
-    def destroy
+    # def destroy
     
-    end
+    # end
 
     def creates
         user = User.create(user_params)
